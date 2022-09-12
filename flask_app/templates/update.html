@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome {{session['user_name']}}</h1>
+    <a href="/home">
+        <button>Home</button>
+    </a>
+    <a href="/logout">
+        <button>Logout</button>
+    </a>
+    {% with messages = get_flashed_messages() %}    <!-- declare a variable called messages -->
+        {% if messages %}   <!-- check if there are any messages -->
+            {% for message in messages %}   <!-- loop through the messages -->
+                <p>{{message}}</p>  <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <h2>Update Build</h2>
+    <form action="/update_build" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{build.id}}">
+        <div>
+            <label for="make_and_model">Make & Model of car:</label>
+            <input type="text" value="{{build.make_and_model}}" name="make_and_model">
+        </div>
+        <div>
+            <label for="year_of_car">Year of Car:</label>
+            <input type="text" value="{{build.year_of_car}}" name="year_of_car">
+        </div>
+        <div>
+            <label for="specs">Specs of Build:</label>
+            <textarea name="specs" rows="6" cols="40">{{build.specs}}</textarea>
+        </div>
+        <input type="submit" value="Update Build">
+    </form>
+    <div>
+        <h3>Update Picture of Build:</h3>
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </div>
+    <!--upload button goes here-->
+</body>
+</html>
