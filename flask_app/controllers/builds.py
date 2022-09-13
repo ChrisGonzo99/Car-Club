@@ -29,6 +29,8 @@ def new_build():
 
 @app.route('/new_build', methods = ['POST'])
 def create_build():
+    if not build.Build.validate_build(request.form):
+        return redirect('/new/build')
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -51,8 +53,6 @@ def create_build():
                 'specs': request.form['specs'],
                 'user_id': request.form['user_id']
             }
-    if not build.Build.validate_build(request.form):
-        return redirect('/new/build')
     build.Build.save(data)
     return redirect('/home')
 
@@ -66,8 +66,30 @@ def update_page(id):
 @app.route('/update_build', methods = ['POST'])
 def update_build():
     if not build.Build.validate_build(request.form):
-        return redirect(f'/edit/{request.form["id"]}')
-    build.Build.update(request.form)
+        return redirect(f'/update/{request.form["id"]}')
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(f'/update/{request.form["id"]}')
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(f'/update/{request.form["id"]}')
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print(filename)
+            data = {
+                'id': request.form['id'],
+                'image_path': "/static/images/"+filename,
+                'make_and_model': request.form['make_and_model'],
+                'year_of_car': request.form['year_of_car'],
+                'specs': request.form['specs'],
+            }
+    build.Build.update(data)
     return redirect('/home')
 
 #Show Build
