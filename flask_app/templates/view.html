@@ -1,26 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+    <title>View page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    {% for build in all_builds %}
-    <h1>{{build.creator.first_name}}'s Build</h1>
-    {% endfor%}
-    <a href="/home">
-        <button>Home</button>
-    </a>
-    <a href="/logout">
-        <button>Logout</button>
-    </a>
-    <h2>{{build.make_and_model}}</h2>
-    <h2>{{build.year_of_car}}</h2>
-    <h2>Specs of Build:</h2>
-    <p>{{build.specs}}</p>
-
+    <div class="container-fluid bg-dark mb-auto">
+        <h1 class="home-header">View Build</h1>
+        <a class="btn btn-secondary mb-2 btn-sm" href="/home">Home</a>
+        <a class="btn btn-secondary mb-2 btn-sm" href="/logout">Logout</a>
+    </div>
+    <div class="container-fluid mx-auto my-4">
+        <div class="row">
+            <div class="col">
+                <div class="card bg-dark mb-2 mx-auto text-light" style="max-width: 800px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{build.image_path}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{build.creator.first_name}}'s Build</h5>
+                                <p class="card-text">Year of Car: {{build.year_of_car}}</p>
+                                <p class="card-text">Make and model: {{build.make_and_model}}</p>
+                                <p class="card-text">Specs: {{build.specs}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--IMAGE GOES HERE!!!!!!!!-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrap.js"></script>
 </body>
 </html>

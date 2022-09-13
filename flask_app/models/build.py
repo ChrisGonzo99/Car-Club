@@ -10,7 +10,7 @@ class Build:
         self.year_of_car = data['year_of_car']
         self.specs = data['specs']
         self.image_path = data['image_path']
-        self.user_id = data['user_id']
+        #self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.creator = None

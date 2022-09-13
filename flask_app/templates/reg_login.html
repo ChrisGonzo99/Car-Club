@@ -22,23 +22,23 @@
     {% endif %}
 {% endwith %}
     
-    <div class="container my-4">
+    <div class="container bg-dark text-light my-4 px-3">
         <div class="row">
             <div class="col">
                 <div class="mb-3">
                     <h2>Register</h2>
                     <form action="/user/register" method="post">
                         <label for="first_name">First Name:</label>
-                        <input class="form-control" type="text" name="first_name">
+                        <input class="form-control" type="text" name="first_name" placeholder="First Name">
                         <label for="last_name">Last Name:</label>
-                        <input class="form-control" type="text" name="last_name">
+                        <input class="form-control" type="text" name="last_name" placeholder="Last Name">
                         <label for="email">Email:</label>
                         <input class="form-control" type="text" name="email">
                         <label for="password">Password:</label>
                         <input class="form-control" type="password" name="password">
                         <label for="confirm_password">Confirm Password:</label>
                         <input class="form-control" type="password" name="confirm_password">
-                        <input class="btn btn-dark" type="submit" value="Register">
+                        <input class="btn btn-secondary my-2" type="submit" value="Register">
                     </form>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <input class="form-control" type="text" name="email">
                         <label for="password">Password:</label>
                         <input class="form-control" type="password" name="password">
-                        <input class="btn btn-dark" type="submit" value="Login">
+                        <input class="btn btn-secondary my-2" type="submit" value="Login">
                     </form>
                 </div>
             </div>

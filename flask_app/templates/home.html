@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-        <div class="container bg-dark mb-auto">
+        <div class="container-fluid bg-dark mb-auto">
             <h1 class="home-header">Car Clubs</h1>
-            <a class="btn btn-secondary mb-2" href="/logout">Logout</a>
+            <a class="btn btn-secondary mb-2 btn-sm" href="/logout">Logout</a>
         </div>
     
     <div class="container my-6">
@@ -24,14 +24,15 @@
                 <a class="btn btn-secondary my-4" href="/new/build">Create a Build</a>
             </div>
         </div>
-    
+        
     <div class="container-fluid mx-auto">
+        {% for build in all_builds %}
         <div class="row">
             <div class="col">
                 <div class="card text-bg-dark mb-2 mx-auto" style="max-width: 800px;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                        {% for build in all_builds %}
+                        
                             <img src="{{build.image_path}}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
@@ -48,11 +49,11 @@
                             {% else %}
                             <a class="btn btn-secondary btn-sm" href="/view/{{build.id}}">View Build</a>
                             {% endif %}
-                        {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
